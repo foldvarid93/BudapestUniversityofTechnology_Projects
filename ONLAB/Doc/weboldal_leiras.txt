@@ -1,0 +1,22 @@
+A weboldal egyszerű. van rajta egy szövegmező meg egy gomb. 
+Ha megnyomjuk a gombot akkor a script tag-ek között megírt SendData() függvény fog végrehajtódni. 
+A gomb onclick eseményéhez hozzárendeltem ezt a SendData() függvényt. ( onclick='SendData();' ) 
+A SendData függvény annyit csinál, hogy indít egy HTTP lekérést (GET) a szerver felé. Egy ilyen lekérés pl amikor a böngésző címsorába beírunk egy webcímet (pl youtube.com) és nyomunk egy entert. Ekkor a youtube szerverei felé intéztünk egy lekérést és ilyenkor a böngésző küld a szervernek egy rövid szöveget. Na a gombnyomással is ezt idézzük elő. Indítunk egy xmlHttpRequest-et. Itt annyi a lényeg, hogy az strText nevezetű változóba rakjuk bele a nekünk érdekes szöveget.
+
+Az strText így rakódik össze:
+
+Az elejáre odarakom a "valami=" szöveget. Ezt a "valami="-t csak azért rakom bele, hogy feldolgozásnál akkor tudni lehet, hogy a valami= után van a számunkra érdekes adat.
+
+Ez után hozzáfűzöm a szövegmezőbe beírt szöveget.
+
+A végén amikor meg megy a kérés a szerver felé akkor még hozzácsapok egy nocache=2142378 szövegrészt valami random számmal. Ez a neten lévő példában is benne volt és szerintem csak arra szolgál, hogy a böngésző ne cache-elje a dolgokat, mivel ugye mindig valami random szám kerül az üzenet végére.
+
+Nézzünk egy példát
+Pl beírod a szövegmezőbe azt, hogy 2018.04.23 és utána megnyomod a gombot, akkor a böngésző a következő szöveget fogja elküldeni a szervernek:
+
+GET valami=2018.04.23&nocache=685375.3511674033 HTTP/1.1
+
+Ez az első sora az üzenetnek.
+Utána még a többi sorokban lesz egy csomó más szöveg de az számunkra nem érdekes.
+
+Gyakorlatilag ezt az egy sor szöveget kell feldolgoznod és kinyerni belőle a hasznos infót amit már meg tudsz jeleníteni a led-eken. Ez az egy sor az arduino kódban a szoveg[] nevű tömbben lesz tárolva.

@@ -1,0 +1,1 @@
+A PC oldali alkalmazás 128x64pixeles 1 bites színmélységû képekkel használható. Készítettem pár képet a bemutatáshoz. Újakat akár gimpben akár más erre a célra alkalmas programmal készíthetünk. A program csak a fenti paraméterekkel rendelkezõ képeket tudja használni. 
